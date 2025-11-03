@@ -20,8 +20,14 @@ services:
     image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "5672:5672"   # AMQP rabbit al cargamento-service
+      - "15672:15672" # Management UI
+      - "1883:1883"   # MQTT esp32 al rabbit
+    volumes:
+      - ./rabbitmq-enabled-plugins:/etc/rabbitmq/enabled_plugins
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
     networks:
       - cargamento-net
 
