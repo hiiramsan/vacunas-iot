@@ -14,6 +14,7 @@ export class InfluxService {
     this.writeApi = this.influx.getWriteApi(org, bucket);
   }
 
+  // Escribe una medición en InfluxDB
   async writeMeasurement(data: any) {
     const point = new Point('cargamento')
       .tag('device', data.device)
@@ -21,6 +22,7 @@ export class InfluxService {
       .floatField('temperatura', data.temperatura)
       .timestamp(new Date());
 
+    // Guardar el punto en InfluxDB
     this.writeApi.writePoint(point);
     await this.writeApi.flush();
   }

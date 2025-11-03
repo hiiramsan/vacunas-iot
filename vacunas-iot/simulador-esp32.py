@@ -27,6 +27,8 @@ client.on_publish = on_publish
 
 # Conectar a RabbitMQ
 print("Conectando a RabbitMQ MQTT...")
+
+# 60 es el ping, lo mantiene vivo
 client.connect(BROKER, PORT, 60)
 client.loop_start()
 
@@ -42,6 +44,7 @@ try:
         }
         
         payload = json.dumps(data)
+        # qos 1, puedes salir duplicados, we can handle that
         result = client.publish(TOPIC, payload, qos=1)
         
         if result.rc == 0:

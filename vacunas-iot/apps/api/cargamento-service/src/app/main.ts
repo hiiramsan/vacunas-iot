@@ -1,18 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
-  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule, {
-    transport: Transport.RMQ,
-    options: {
-      urls: ['amqp://rabbitmq:5672'],
-      queue: 'cargamento_queue',
-      queueOptions: { durable: true },
-    },
-  });
-  await app.listen();
-  console.log('cargamento-service: listening for messages');
+  const app = await NestFactory.create(AppModule);
+  const globalPrefix = 'api';
+
+  app.setGlobalPrefix(globalPrefix);
+
+  const port = process.env.PORT || 3000;
+  await app.listen(port);
+  console.log(`App running on: http://localhost:${port}/${globalPrefix}`);
 }
 bootstrap();

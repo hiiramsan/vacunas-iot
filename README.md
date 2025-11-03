@@ -134,6 +134,11 @@ vacunas-iot/
 └── simulador-esp32.py             # Simulador de dispositivo IoT
 ```
 
+Super importante el rabbitmq-enabled-plugins, se ocupa para activar el protocolo MQTT
+Ahí se especifica también si se puede acceder vía web (js)
+La imagen de rabbit que usamos en el compose ya trae por defecto el verlo en el navegador,
+pero la comunicación del esp32 al rabbit ocupaba el protocolo MQTT, por eso se especifica.
+
 ## Configuración de RabbitMQ
 
 ### Puertos:
