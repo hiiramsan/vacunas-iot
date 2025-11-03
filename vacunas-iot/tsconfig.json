@@ -1,0 +1,28 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compileOnSave": false,
+  "files": [],
+  "references": [
+    {
+      "path": "./apps/web/vacunas-iot"
+    },
+    {
+      "path": "./apps/api/cargamento-service"
+    },
+    {
+      "path": "./libs/shared-entities"
+    },
+    {
+      "path": "./libs/shared-dtos"
+    },
+    {
+      "path": "./apps/api/reporte-envios-e2e"
+    },
+    {
+      "path": "./apps/api/reporte-envios"
+    },
+    {
+      "path": "./apps/api/api-gateway"
+    }
+  ]
+}
