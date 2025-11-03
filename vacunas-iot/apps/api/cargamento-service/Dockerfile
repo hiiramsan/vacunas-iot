@@ -20,11 +20,11 @@ WORKDIR /app
 
 RUN corepack enable
 
-# build generado por Nx
-COPY --from=builder /app/dist/apps/api/cargamento-service ./dist
+# build generado por Nx (se genera en apps/api/cargamento-service/dist/)
+COPY --from=builder /app/apps/api/cargamento-service/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./
 
 EXPOSE 3000
 
-CMD ["node", "dist/src/main.js"]
+CMD ["node", "dist/main.js"]

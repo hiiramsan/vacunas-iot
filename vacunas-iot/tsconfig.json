@@ -16,9 +16,6 @@
       "path": "./libs/shared-dtos"
     },
     {
-      "path": "./apps/api/reporte-envios-e2e"
-    },
-    {
       "path": "./apps/api/reporte-envios"
     },
     {
