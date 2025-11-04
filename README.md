@@ -11,6 +11,8 @@ ESP32 Simulator → MQTT (1883) → RabbitMQ → AMQP Queue → Microservicio Ne
 - **Simulador ESP32**: Script Python que simula dispositivos IoT enviando datos de sensores
 - **RabbitMQ**: Broker de mensajes con plugin MQTT habilitado
 - **Cargamento Service**: Microservicio NestJS que consume mensajes y almacena datos
+- **Quality Assurance Service**: Sistema de validación de datos y monitoreo
+- **Notification Service**: Gestión de alertas y notificaciones
 - **InfluxDB**: Base de datos de series temporales para almacenar métricas de sensores
 - **API Gateway**: Gateway para la aplicación web
 - **Web App**: Interfaz Next.js para visualización
@@ -231,9 +233,11 @@ python simulador-esp32.py
 3. **RabbitMQ** recibe el mensaje y lo enruta a través del exchange `amq.topic`
 4. **Binding** dirige mensajes con routing key `sensor.#` a `cargamento_queue`
 5. **Cargamento Service** consume mensajes de la cola usando AMQP
-6. **Procesamiento** parsea JSON y valida datos
-7. **Almacenamiento** guarda en InfluxDB en el bucket `cargamentos`
-8. **Visualización** disponible en InfluxDB UI o a través de la API
+6. **Quality Assurance** valida los datos recibidos
+7. **Notification Service** envía alertas si se detectan anomalías
+8. **Procesamiento** parsea JSON y valida datos
+9. **Almacenamiento** guarda en InfluxDB solo si pasa validaciones críticas
+10. **Visualización** disponible en InfluxDB UI o a través de la API
 
 ## Tecnologías Utilizadas
 
